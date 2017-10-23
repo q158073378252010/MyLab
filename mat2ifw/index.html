@@ -45,7 +45,7 @@
             <label class="mdui-textfield-label">转换后的 IFW 在这里输出</label>
             <textarea class="mdui-textfield-input" id="output" type="text"></textarea>
         </div>
-        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="copy" data-clipboard-target="#output">把转换后的 IFW 复制到剪贴板</button>
+        <button class="mdui-btn mdui-btn-raised mdui-ripple mdui-color-theme-accent" id="copy" data-clipboard-target="#output"  onclick="mdui.snackbar({message: '已经复制到剪贴板', timeout: 1000});">把转换后的 IFW 复制到剪贴板</button>
     </div>
     <script src="https://cdnjs.cat.net/ajax/libs/mdui/0.3.0/js/mdui.min.js"></script>
     <script src="https://cdnjs.cat.net/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
