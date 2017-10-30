@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Chrome 离线包下载 - neoFelhz's Lab</title>
+    <link rel="icon shortcut" href="./favicon.png">
+    <link rel="icon" href="./favicon.png">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" itemprop="description" content="Chrome 离线包下载器">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+    <!--<script>window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date; ga('create', 'UA-83054354-6', 'auto'); ga('send', 'pageview');</script>
+    <script src='https://s.nfz.yecdn.com/static/js/jquery.ag.1.0.js' async></script>-->
+    <link rel="stylesheet" href="https://cdnjs.cat.net/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.geekzu.org/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.geekzu.org/css?family=Roboto:300,400,500" rel="stylesheet">
+    <style>
+        .btn {
+            letter-spacing: 0px!important;
+            padding: 0 1rem!important;
+        }
+
+        i.left {
+            margin-right: 5px!important;
+        }
+
+        .card-action {
+            padding: 16px!important;
+        }
+    </style>
+	<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;ga('create', 'UA-83054354-6', 'auto');ga('send', 'pageview');</script>
+</head>
+
+<body>
+    <div class="row" style="margin-top: 56px">
+        <div class="center-align">
+            <img src="./chrome.svg" height="50px" />
+            <h4>Chrome 离线包下载</h4>
+            <h5>For Windows</h5>
+            <h6>如果你看不到上面的 Chrome 的 Logo，说明你应该在下面下载一个 Chrome 来用了</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 m6 offset-l1 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Stable 稳定版 32 位</span>
+                    <p>文件大小：
+                        <span id="version-stable-x86-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light green accent-4" id="version-stable-x86-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-stable-x86"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-stable-x86-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Stable 稳定版 64 位</span>
+                    <p>文件大小：
+                        <span id="version-stable-x64-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light green accent-4" id="version-stable-x64-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-stable-x64"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-stable-x64-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 offset-l1 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Beta 测试版 32 位</span>
+                    <p>文件大小：
+                        <span id="version-beta-x86-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light blue" id="version-beta-x86-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-beta-x86"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-beta-x86-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Beta 测试版 64 位</span>
+                    <p>文件大小：
+                        <span id="version-beta-x64-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light blue" id="version-beta-x64-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-beta-x64"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-beta-x64-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 offset-l1 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Dev 开发版 32 位</span>
+                    <p>文件大小：
+                        <span id="version-dev-x86-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light brown lighten-2" id="version-dev-x86-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-dev-x86"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-dev-x86-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Dev 开发版 64 位</span>
+                    <p>文件大小：
+                        <span id="version-dev-x64-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light brown lighten-2" id="version-dev-x64-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-dev-x64"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-dev-x64-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m6 offset-l1 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Canary 金丝雀 32 位</span>
+                    <p>文件大小：
+                        <span id="version-canary-x86-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light amber lighten-1" id="version-canary-x86-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-canary-x86"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-canary-x86-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m6 l5">
+            <div class="card z-depth-2">
+                <div class="card-content">
+                    <span class="card-title">Canary 金丝雀 64 位</span>
+                    <p>文件大小：
+                            <span id="version-canary-x64-size"></span>MB</p>
+                </div>
+                <div class="card-action">
+                    <a class="waves-effect btn waves-light amber lighten-1" id="version-canary-x64-dl">
+                        <i class="material-icons left">file_download</i>
+                        <strong>
+                            <span id="version-canary-x64"></span>
+                        </strong>
+                    </a>
+                    <a class="waves-effect btn waves-light grey lighten-3 black-text" id="version-canary-x64-cache">
+                        <strong>缓存服务器</strong>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        console.log("\n %c Theme by neoFelhz %c http://nfz.moe \n\n", "color: #000000; background: #b0bec5; padding:5px 0;", "background: #e0e0e0; padding:5px 0;");
+        window.cache="http://120.52.72.21/";
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/stable-x86.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-stable-x86").eq(f).append(g);
+            $("#version-stable-x86-dl").eq(f).attr("href", i);
+            $("#version-stable-x86-cache").eq(f).attr("href", l);
+            $("#version-stable-x86-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/stable-x64.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-stable-x64").eq(f).append(g);
+            $("#version-stable-x64-dl").eq(f).attr("href", i);
+            $("#version-stable-x64-cache").eq(f).attr("href", l);
+            $("#version-stable-x64-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/beta-x86.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-beta-x86").eq(f).append(g);
+            $("#version-beta-x86-dl").eq(f).attr("href", i);
+            $("#version-beta-x86-cache").eq(f).attr("href", l);
+            $("#version-beta-x86-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/beta-x64.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-beta-x64").eq(f).append(g);
+            $("#version-beta-x64-dl").eq(f).attr("href", i);
+            $("#version-beta-x64-cache").eq(f).attr("href", l);
+            $("#version-beta-x64-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/dev-x86.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-dev-x86").eq(f).append(g);
+            $("#version-dev-x86-dl").eq(f).attr("href", i);
+            $("#version-dev-x86-cache").eq(f).attr("href", l);
+            $("#version-dev-x86-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/dev-x64.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-dev-x64").eq(f).append(g);
+            $("#version-dev-x64-dl").eq(f).attr("href", i);
+            $("#version-dev-x64-cache").eq(f).attr("href", l);
+            $("#version-dev-x64-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/canary-x86.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-canary-x86").eq(f).append(g);
+            $("#version-canary-x86-dl").eq(f).attr("href", i);
+            $("#version-canary-x86-cache").eq(f).attr("href", l);
+            $("#version-canary-x86-size").eq(f).append(j);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://raw.githubusercontent.com/neoFelhz/ChromeChecker/gh-pages/canary-x64.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.find("updatecheck").each(function (f) {
+            var i = $(this).find("url").attr("codebase");
+            var g = $(this).find("manifest").attr("version");
+            var j = $(this).find("package").attr("size");
+            var k = $(this).find("action").attr("run");
+            j = j / 1048576;
+            j = j.toFixed(2);
+            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+            i = i + k;
+            var l = cache + i;
+            $("#version-canary-x64").eq(f).append(g);
+            $("#version-canary-x64-dl").eq(f).attr("href", i);
+            $("#version-canary-x64-cache").eq(f).attr("href", l);
+            $("#version-canary-x64-size").eq(f).append(j);
+        })
+    </script>
+</body>
+
+</html>
