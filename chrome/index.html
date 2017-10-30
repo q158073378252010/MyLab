@@ -36,6 +36,10 @@
         html {
             font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif;
         }
+
+        .sha256 {
+            word-wrap: break-word!important;
+        }
     </style>
     <script>window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date; ga('create', 'UA-83054354-6', 'auto'); ga('send', 'pageview');</script>
 </head>
@@ -47,7 +51,6 @@
                 height="50px" />
             <h4>Chrome 离线包下载</h4>
             <h5>For Windows</h5>
-            <h6>如果你看不到上面的 Chrome 的 Logo，说明你应该在下面下载一个 Chrome 来用了</h6>
         </div>
     </div>
     <div class="row">
@@ -60,7 +63,7 @@
                         <span id="version-stable-x86-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-stable-x86-sha256"></span>
+                        <span class="sha256" id="version-stable-x86-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -85,7 +88,7 @@
                         <span id="version-stable-x64-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-stable-x64-sha256"></span>
+                        <span class="sha256" id="version-stable-x64-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -111,7 +114,7 @@
                         <span id="version-beta-x86-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-beta-x86-sha256"></span>
+                        <span class="sha256" id="version-beta-x86-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -136,7 +139,7 @@
                         <span id="version-beta-x64-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-beta-x64-sha256"></span>
+                        <span class="sha256" id="version-beta-x64-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -162,7 +165,7 @@
                         <span id="version-dev-x86-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-dev-x86-sha256"></span>
+                        <span class="sha256" id="version-dev-x86-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -187,7 +190,7 @@
                         <span id="version-dev-x64-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-dev-x64-sha256"></span>
+                        <span class="sha256" id="version-dev-x64-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -213,7 +216,7 @@
                         <span id="version-canary-x86-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-canary-x86-sha256"></span>
+                        <span class="sha256" id="version-canary-x86-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
@@ -238,7 +241,7 @@
                         <span id="version-canary-x64-size"></span>MB</p>
                     <p>
                         <b>SHA256：</b>
-                        <span id="version-canary-x64-sha256"></span>
+                        <span class="sha256" id="version-canary-x64-sha256"></span>
                     </p>
                 </div>
                 <div class="card-action">
