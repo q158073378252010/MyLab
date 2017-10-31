@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <link rel="preconnect" href="https://ping-nfz.b0.upaiyun.com" crossorigin>
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Chrome 离线包下载 - neoFelhz's Lab</title>
@@ -51,6 +52,10 @@
                 height="50px" />
             <h4>Chrome 离线包下载</h4>
             <h5>For Windows</h5>
+            <p>
+                <b>查询时间：</b>
+                <span id="checktime"></span>
+            </p>
         </div>
     </div>
     <div class="row">
@@ -261,12 +266,24 @@
     <script src="https://cdnjs.cat.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
-        console.log("\n %c Theme by neoFelhz %c http://nfz.moe \n\n", "color: #000000; background: #b0bec5; padding:5px 0;", "background: #e0e0e0; padding:5px 0;");
-        window.cache = "http://120.52.72.21/";
+            console.log("\n %c Theme by neoFelhz %c http://nfz.moe \n\n", "color: #000000; background: #b0bec5; padding:5px 0;", "background: #e0e0e0; padding:5px 0;");
+            window.cache = "http://120.52.72.21/";
     </script>
     <script>
         var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/stable-x86.xml",
+            url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/checktime.xml",
+            async: false
+        }),
+            c = $.parseXML(a.responseText),
+            b = $(c);
+        b.each(function (f) {
+            var i = $(this).find("time").text();
+            $("#checktime").eq(f).append(i);
+        })
+    </script>
+    <script>
+        var a = $.ajax({
+            url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/stable-x86.xml",
             async: false
         }),
             c = $.parseXML(a.responseText),
@@ -291,7 +308,7 @@
     </script>
     <script>
         var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/stable-x64.xml",
+            url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/stable-x64.xml",
             async: false
         }),
             c = $.parseXML(a.responseText),
@@ -315,58 +332,58 @@
         })
     </script>
     <script>
-        var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/beta-x86.xml",
-            async: false
-        }),
-            c = $.parseXML(a.responseText),
-            b = $(c);
-        b.find("updatecheck").each(function (f) {
-            var i = $(this).find("url").attr("codebase");
-            var g = $(this).find("manifest").attr("version");
-            var j = $(this).find("package").attr("size");
-            var k = $(this).find("action").attr("run");
-            var m = $(this).find("package").attr("hash_sha256");
-            j = j / 1048576;
-            j = j.toFixed(2);
-            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
-            i = i + k;
-            var l = cache + i;
-            $("#version-beta-x86").eq(f).append(g);
-            $("#version-beta-x86-dl").eq(f).attr("href", i);
-            $("#version-beta-x86-cache").eq(f).attr("href", l);
-            $("#version-beta-x86-size").eq(f).append(j);
-            $("#version-beta-x86-sha256").eq(f).append(m);
-        })
+            var a = $.ajax({
+                url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/beta-x86.xml",
+                async: false
+            }),
+                c = $.parseXML(a.responseText),
+                b = $(c);
+            b.find("updatecheck").each(function (f) {
+                var i = $(this).find("url").attr("codebase");
+                var g = $(this).find("manifest").attr("version");
+                var j = $(this).find("package").attr("size");
+                var k = $(this).find("action").attr("run");
+                var m = $(this).find("package").attr("hash_sha256");
+                j = j / 1048576;
+                j = j.toFixed(2);
+                i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+                i = i + k;
+                var l = cache + i;
+                $("#version-beta-x86").eq(f).append(g);
+                $("#version-beta-x86-dl").eq(f).attr("href", i);
+                $("#version-beta-x86-cache").eq(f).attr("href", l);
+                $("#version-beta-x86-size").eq(f).append(j);
+                $("#version-beta-x86-sha256").eq(f).append(m);
+            })
+    </script>
+    <script>
+            var a = $.ajax({
+                url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/beta-x64.xml",
+                async: false
+            }),
+                c = $.parseXML(a.responseText),
+                b = $(c);
+            b.find("updatecheck").each(function (f) {
+                var i = $(this).find("url").attr("codebase");
+                var g = $(this).find("manifest").attr("version");
+                var j = $(this).find("package").attr("size");
+                var k = $(this).find("action").attr("run");
+                var m = $(this).find("package").attr("hash_sha256");
+                j = j / 1048576;
+                j = j.toFixed(2);
+                i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+                i = i + k;
+                var l = cache + i;
+                $("#version-beta-x64").eq(f).append(g);
+                $("#version-beta-x64-dl").eq(f).attr("href", i);
+                $("#version-beta-x64-cache").eq(f).attr("href", l);
+                $("#version-beta-x64-size").eq(f).append(j);
+                $("#version-beta-x64-sha256").eq(f).append(m);
+            })
     </script>
     <script>
         var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/beta-x64.xml",
-            async: false
-        }),
-            c = $.parseXML(a.responseText),
-            b = $(c);
-        b.find("updatecheck").each(function (f) {
-            var i = $(this).find("url").attr("codebase");
-            var g = $(this).find("manifest").attr("version");
-            var j = $(this).find("package").attr("size");
-            var k = $(this).find("action").attr("run");
-            var m = $(this).find("package").attr("hash_sha256");
-            j = j / 1048576;
-            j = j.toFixed(2);
-            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
-            i = i + k;
-            var l = cache + i;
-            $("#version-beta-x64").eq(f).append(g);
-            $("#version-beta-x64-dl").eq(f).attr("href", i);
-            $("#version-beta-x64-cache").eq(f).attr("href", l);
-            $("#version-beta-x64-size").eq(f).append(j);
-            $("#version-beta-x64-sha256").eq(f).append(m);
-        })
-    </script>
-    <script>
-        var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/dev-x86.xml",
+            url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/dev-x86.xml",
             async: false
         }),
             c = $.parseXML(a.responseText),
@@ -390,79 +407,79 @@
         })
     </script>
     <script>
-        var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/dev-x64.xml",
-            async: false
-        }),
-            c = $.parseXML(a.responseText),
-            b = $(c);
-        b.find("updatecheck").each(function (f) {
-            var i = $(this).find("url").attr("codebase");
-            var g = $(this).find("manifest").attr("version");
-            var j = $(this).find("package").attr("size");
-            var k = $(this).find("action").attr("run");
-            var m = $(this).find("package").attr("hash_sha256");
-            j = j / 1048576;
-            j = j.toFixed(2);
-            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
-            i = i + k;
-            var l = cache + i;
-            $("#version-dev-x64").eq(f).append(g);
-            $("#version-dev-x64-dl").eq(f).attr("href", i);
-            $("#version-dev-x64-cache").eq(f).attr("href", l);
-            $("#version-dev-x64-size").eq(f).append(j);
-            $("#version-dev-x64-sha256").eq(f).append(m);
-        })
+            var a = $.ajax({
+                url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/dev-x64.xml",
+                async: false
+            }),
+                c = $.parseXML(a.responseText),
+                b = $(c);
+            b.find("updatecheck").each(function (f) {
+                var i = $(this).find("url").attr("codebase");
+                var g = $(this).find("manifest").attr("version");
+                var j = $(this).find("package").attr("size");
+                var k = $(this).find("action").attr("run");
+                var m = $(this).find("package").attr("hash_sha256");
+                j = j / 1048576;
+                j = j.toFixed(2);
+                i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+                i = i + k;
+                var l = cache + i;
+                $("#version-dev-x64").eq(f).append(g);
+                $("#version-dev-x64-dl").eq(f).attr("href", i);
+                $("#version-dev-x64-cache").eq(f).attr("href", l);
+                $("#version-dev-x64-size").eq(f).append(j);
+                $("#version-dev-x64-sha256").eq(f).append(m);
+            })
     </script>
     <script>
-        var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/canary-x86.xml",
-            async: false
-        }),
-            c = $.parseXML(a.responseText),
-            b = $(c);
-        b.find("updatecheck").each(function (f) {
-            var i = $(this).find("url").attr("codebase");
-            var g = $(this).find("manifest").attr("version");
-            var j = $(this).find("package").attr("size");
-            var k = $(this).find("action").attr("run");
-            var m = $(this).find("package").attr("hash_sha256");
-            j = j / 1048576;
-            j = j.toFixed(2);
-            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
-            i = i + k;
-            var l = cache + i;
-            $("#version-canary-x86").eq(f).append(g);
-            $("#version-canary-x86-dl").eq(f).attr("href", i);
-            $("#version-canary-x86-cache").eq(f).attr("href", l);
-            $("#version-canary-x86-size").eq(f).append(j);
-            $("#version-canary-x86-sha256").eq(f).append(m);
-        })
+            var a = $.ajax({
+                url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/canary-x86.xml",
+                async: false
+            }),
+                c = $.parseXML(a.responseText),
+                b = $(c);
+            b.find("updatecheck").each(function (f) {
+                var i = $(this).find("url").attr("codebase");
+                var g = $(this).find("manifest").attr("version");
+                var j = $(this).find("package").attr("size");
+                var k = $(this).find("action").attr("run");
+                var m = $(this).find("package").attr("hash_sha256");
+                j = j / 1048576;
+                j = j.toFixed(2);
+                i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+                i = i + k;
+                var l = cache + i;
+                $("#version-canary-x86").eq(f).append(g);
+                $("#version-canary-x86-dl").eq(f).attr("href", i);
+                $("#version-canary-x86-cache").eq(f).attr("href", l);
+                $("#version-canary-x86-size").eq(f).append(j);
+                $("#version-canary-x86-sha256").eq(f).append(m);
+            })
     </script>
     <script>
-        var a = $.ajax({
-            url: "https://neofelhz.github.io/ChromeChecker/canary-x64.xml",
-            async: false
-        }),
-            c = $.parseXML(a.responseText),
-            b = $(c);
-        b.find("updatecheck").each(function (f) {
-            var i = $(this).find("url").attr("codebase");
-            var g = $(this).find("manifest").attr("version");
-            var j = $(this).find("package").attr("size");
-            var k = $(this).find("action").attr("run");
-            var m = $(this).find("package").attr("hash_sha256");
-            j = j / 1048576;
-            j = j.toFixed(2);
-            i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
-            i = i + k;
-            var l = cache + i;
-            $("#version-canary-x64").eq(f).append(g);
-            $("#version-canary-x64-dl").eq(f).attr("href", i);
-            $("#version-canary-x64-cache").eq(f).attr("href", l);
-            $("#version-canary-x64-size").eq(f).append(j);
-            $("#version-canary-x64-sha256").eq(f).append(m);
-        })
+            var a = $.ajax({
+                url: "https://ping-nfz.b0.upaiyun.com/neoFelhz/ChromeChecker/gh-pages/canary-x64.xml",
+                async: false
+            }),
+                c = $.parseXML(a.responseText),
+                b = $(c);
+            b.find("updatecheck").each(function (f) {
+                var i = $(this).find("url").attr("codebase");
+                var g = $(this).find("manifest").attr("version");
+                var j = $(this).find("package").attr("size");
+                var k = $(this).find("action").attr("run");
+                var m = $(this).find("package").attr("hash_sha256");
+                j = j / 1048576;
+                j = j.toFixed(2);
+                i = i.replace("http://redirector.gvt1.com/edgedl/", "https://dl.google.com/")
+                i = i + k;
+                var l = cache + i;
+                $("#version-canary-x64").eq(f).append(g);
+                $("#version-canary-x64-dl").eq(f).attr("href", i);
+                $("#version-canary-x64-cache").eq(f).attr("href", l);
+                $("#version-canary-x64-size").eq(f).append(j);
+                $("#version-canary-x64-sha256").eq(f).append(m);
+            })
     </script>
 </body>
 
